@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: ./app
+      args:
+        ubu_ver: '20.04'
+    image: app:1
+    env_file:
+      - .env
+  deb:
+    image: debian:12
+    command: sleep inf
+    deploy: 
+      resources: 
+        limits: 
+          memory: 64M
+    volumes:
+      - type: bind
+        source: /home/debian/test
+        target: /data1
+      - type: volume
+        source: voltest
+        target: /voldata
+    networks: 
+      appnets: 
+        ipv4_address: 192.168.20.20
+volumes:
+  voltest:

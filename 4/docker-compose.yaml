@@ -1,0 +1,29 @@
+services:
+  gitea:
+    image: gitea/gitea:1.20.5
+    restart: always
+    ports:
+      - 3000:3000
+      - 2244:22
+    environment:
+      - DB_TYPE=mysql
+      - DB_HOST=db:3306
+      - DB_NAME=giteadb
+      - DB_USER=user
+      - DB_PASSWD=pass
+    volumes:
+      - gitvol:/data
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=giteadb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+    volumes:
+      - git_db:/var/lib/mysql
+volumes:
+  gitvol:
+  git_db:
+    

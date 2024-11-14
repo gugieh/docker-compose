@@ -1,0 +1,4 @@
+services:
+  app:
+    image: debian:12
+    container_name: first_deb

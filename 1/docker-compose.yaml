@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx1
+    ports:
+      - 8888:80
+    volumes:                  
+      - ng-vol:/usr/share/nginx/html  
+volumes:
+  ng-vol:
