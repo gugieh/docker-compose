@@ -24,5 +24,22 @@ services:
     networks: 
       appnets: 
         ipv4_address: 192.168.20.20
+    depends_on: 
+      - web
+  web:
+    image: nginx:latest
+    ports: 
+      - 9999:80
+    expose: 
+      - 80
+    networks: 
+      appnets: 
+        ipv4_address: 192.168.20.30
 volumes:
   voltest:
+networks:
+  appnets:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.20.0/24
