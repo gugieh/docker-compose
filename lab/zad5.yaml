@@ -1,0 +1,14 @@
+services:
+  my-web:
+    image: httpd:latest
+    deploy:
+      replicas: 3
+    ports:
+      - "9999:80"
+    volumes:
+      - data:/mydata
+      - /home/debian/docker-compose/lab/index.html:/usr/local/apache2/htdocs/index.html
+    working_dir: /my_data  
+
+volumes:
+  data:

@@ -1,0 +1,15 @@
+services:
+  deby:
+    image: debian:latest
+    entrypoint: ["sleep","infinity"]
+    deploy:
+      replicas: 3 
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - netfordeb
+
+networks:
+  netfordeb:
+    driver: overlay 

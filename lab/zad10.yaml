@@ -1,0 +1,19 @@
+services:
+  webserwer:
+    image: nginx:latest
+    deploy:
+      replicas: 3
+    ports:
+      - "8090:80" 
+    volumes:
+      - data_web:/app
+    networks:
+      - web_net
+    working_dir: "/app"
+
+networks:
+  web_net:
+    driver: bridge  
+
+volumes:
+  data_web:
